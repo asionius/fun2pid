@@ -1,7 +1,7 @@
-wangaike : wangaike.o
-	cc -o hello hello.o
-wangaike.o : fun2pid.c
-	cc -c hello.c
+wangaike : fun2pid.o
+	cc -o wangaike fun2pid.o
+fun2pid.o : fun2pid.c
+	cc -c fun2pid.c
 clean:
-	 rm wangaike.o
+	 rm fun2pid.o
 

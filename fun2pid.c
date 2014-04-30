@@ -4,11 +4,11 @@
 #include<stdlib.h>
 void main(int argc,char*argv[])
 {
-/*	if(argc != 2)
+	if(argc != 2)
 	{
-			printf("wrong input!\n");
+			printf("wrong input!，please input only one name of pid!\n");
 			exit(1);
-	}*/
+	}
 	DIR *dir;
 	int i=0,j=0,k,l=0;
 	 struct dirent *ptr;
@@ -29,23 +29,24 @@ void main(int argc,char*argv[])
 					 if (NULL != fp)
 					 {
 							 fgets(filetext,50,fp);//读取文件
-//							filetext[49] = '\0';//给读出的内容加上字符串结束符
-//							 printf("%s\n",filetext);
+							filetext[49] = '\0';//给读出的内容加上字符串结束符
+	//						 printf("%s\n",filetext);
 							while(filetext[++i] != '\0');
 							j = i;
-							while(filetext[--i] != ' ');
+	//						printf("%d\n",i);
+							while(filetext[--i] != '	');	//经测试该处为tab键
+	//						printf("%d\n",i);				//测试用，此处知道filetext中没有空格键
 							for(k=i+1;k<j;k++){
-								filename[l++] = filetext[k];
+								filename[l++] = filetext[k];//filetext里面内容为 (Name:	"进程名称")该段代码将"进程名称"提取出来。 
 							}
 							filename[l] = '\0';
 							l=0;
 							i=j=0;
-//							printf("%s\n",filename);
-//							printf("%d\n",(int)strlen(filetext));
+	//						printf("%s\n",filename);
+	//						printf("%d\n",(int)strlen(filetext));
 							 //如果文件内容满足要求则打印路径的名字（即进程的PID）
 							 if (filename == strstr(filename, argv[1])) 
-									 printf("PID:  %s\n", ptr->d_name);
-//							 printf("%s\n",filetext);
+									 printf("PID:  %s\n", ptr->d_name);						 
 							 fclose(fp);
 					 }
 
